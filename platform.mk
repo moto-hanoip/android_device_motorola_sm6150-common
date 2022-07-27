@@ -158,10 +158,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(MOTOROLA_ROOT)/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
-PRODUCT_USES_PIXEL_POWER_HAL := true
+PRODUCT_USES_PIXEL_POWER_HAL := false
 
 # USB
-PRODUCT_USES_PIXEL_USB_HAL := true
+PRODUCT_USES_PIXEL_USB_HAL := false
 
 $(call inherit-product, device/motorola/common/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
