@@ -18,7 +18,7 @@
 
 set -e
 
-DEVICE=sm4250-common
+DEVICE=sm6150-common
 VENDOR=motorola
 
 # Load extract utilities and do some sanity checks.

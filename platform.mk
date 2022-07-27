@@ -13,16 +13,16 @@
 # limitations under the License.
 
 # Platform Path
-PLATFORM_COMMON_PATH := device/motorola/sm4250-common
+PLATFORM_COMMON_PATH := device/motorola/sm6150-common
 
 # Platform
-BENGAL := bengal
-KERNEL_VERSION := 4.19
+SM6150 := sm6150
+KERNEL_VERSION := 4.14
 PRODUCT_PLATFORM_MOT := true
-TARGET_BOARD_PLATFORM := $(BENGAL)
+TARGET_BOARD_PLATFORM := $(SM6150)
 
 # Kernel Headers
-PRODUCT_VENDOR_KERNEL_HEADERS := device/motorola/sm4250-common-kernel/kernel-headers
+PRODUCT_VENDOR_KERNEL_HEADERS := device/motorola/sm6150-common-kernel/kernel-headers
 
 # Rootdir Path
 MOTOROLA_ROOT := $(PLATFORM_COMMON_PATH)/rootdir
@@ -61,8 +61,8 @@ PRODUCT_PACKAGES += \
     update_engine_client \
     update_engine_sideload \
     update_verifier \
-    bootctrl.sm4250-common \
-    bootctrl.sm4250-common.recovery
+    bootctrl.sm6150-common \
+    bootctrl.sm6150-common.recovery
 
 AB_OTA_PARTITIONS += \
     boot \
@@ -141,7 +141,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Init
 PRODUCT_COPY_FILES += \
-    device/qcom/common/vendor/init/bengal/bin/init.kernel.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.kernel.post_boot.sh
+    device/qcom/common/vendor/init/sm6150/bin/init.kernel.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.kernel.post_boot.sh
 
 PRODUCT_SOONG_NAMESPACES += device/qcom/common/vendor/init
 
@@ -166,4 +166,4 @@ PRODUCT_USES_PIXEL_USB_HAL := true
 $(call inherit-product, device/motorola/common/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-$(call inherit-product, vendor/motorola/sm4250-common/sm4250-common-vendor.mk)
+$(call inherit-product, vendor/motorola/sm6150-common/sm6150-common-vendor.mk)

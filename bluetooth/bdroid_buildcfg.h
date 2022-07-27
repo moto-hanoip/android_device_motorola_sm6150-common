@@ -32,16 +32,16 @@ static inline const char* getBTDefaultName()
     char device[PROPERTY_VALUE_MAX];
     property_get("ro.boot.device", device, "");
 
-    if (!strcmp("guamna", device)) {
-        return "moto g play (2021)";
+    if (!strcmp("hanoip", device)) {
+        return "moto g60";
     }
 
-    if (!strcmp("borneo", device)) {
-        return "moto g power (2021)";
+    if (!strcmp("odessa", device)) {
+        return "moto g9 plus";
     }
 
-    if (!strcmp("cebu", device)) {
-        return "moto g9 power";
+    if (!strcmp("liber", device)) {
+        return "moto one fusion";
     }
 
     return "moto g";
