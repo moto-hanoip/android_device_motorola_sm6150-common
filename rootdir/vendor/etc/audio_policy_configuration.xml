@@ -74,10 +74,10 @@
                 <mixPort name="primary input" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
                              samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                             channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO,AUDIO_CHANNEL_IN_FRONT_BACK,AUDIO_CHANNEL_IN_AMBISONIC,AUDIO_CHANNEL_INDEX_MASK_3,AUDIO_CHANNEL_INDEX_MASK_4"/>
+                             channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO,AUDIO_CHANNEL_IN_FRONT_BACK,AUDIO_CHANNEL_INDEX_MASK_3,AUDIO_CHANNEL_INDEX_MASK_4"/>
                     <profile name="" format="AUDIO_FORMAT_PCM_8_24_BIT"
                              samplingRates="8000,11025,12000,16000,22050,24000,32000,44100,48000"
-                             channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO,AUDIO_CHANNEL_IN_FRONT_BACK,AUDIO_CHANNEL_IN_AMBISONIC,AUDIO_CHANNEL_INDEX_MASK_3,AUDIO_CHANNEL_INDEX_MASK_4"/>
+                             channelMasks="AUDIO_CHANNEL_IN_MONO,AUDIO_CHANNEL_IN_STEREO,AUDIO_CHANNEL_IN_FRONT_BACK,AUDIO_CHANNEL_INDEX_MASK_3,AUDIO_CHANNEL_INDEX_MASK_4"/>
                 </mixPort>
                 <mixPort name="voice_rx" role="sink">
                     <profile name="" format="AUDIO_FORMAT_PCM_16_BIT"
@@ -102,8 +102,6 @@
                 <devicePort tagName="Wired Headphones" type="AUDIO_DEVICE_OUT_WIRED_HEADPHONE" role="sink">
                 </devicePort>
                 <devicePort tagName="Line Out" type="AUDIO_DEVICE_OUT_LINE" role="sink">
-                </devicePort>
-                <devicePort tagName="Dock Headset" type="AUDIO_DEVICE_OUT_ANLG_DOCK_HEADSET" role="sink">
                 </devicePort>
                 <devicePort tagName="BT SCO" type="AUDIO_DEVICE_OUT_BLUETOOTH_SCO" role="sink">
                 </devicePort>
@@ -147,8 +145,6 @@
                        sources="primary output,deep_buffer,compressed_offload"/>
                 <route type="mix" sink="Line Out"
                        sources="primary output,deep_buffer,compressed_offload"/>
-                <route type="mix" sink="Dock Headset"
-                       sources="primary output,deep_buffer"/>
                 <route type="mix" sink="BT SCO"
                        sources="primary output,deep_buffer"/>
                 <route type="mix" sink="BT SCO Headset"
@@ -170,12 +166,6 @@
                 <route type="mix" sink="hifi_input" sources="USB Device In,USB Headset In" />
             </routes>
         </module>
-
-        <!-- A2DP Input Audio HAL -->
-        <xi:include href="a2dp_in_audio_policy_configuration.xml"/>
-
-        <!-- Bluetooth Audio HAL -->
-        <xi:include href="bluetooth_audio_policy_configuration.xml"/>
 
         <!-- Usb Audio HAL -->
         <xi:include href="usb_audio_policy_configuration.xml"/>
