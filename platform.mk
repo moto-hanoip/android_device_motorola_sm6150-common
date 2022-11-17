@@ -64,11 +64,15 @@ PRODUCT_PACKAGES += \
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    product \
     system \
     vendor \
-    vbmeta \
+    vbmeta
+
+ifneq ($(TARGET_USES_LEGACY_AB),true)
+AB_OTA_PARTITIONS += \
+    product \
     vbmeta_system
+endif
 
 # Dynamic Partitions: build fastbootd
 PRODUCT_PACKAGES += \
@@ -88,7 +92,6 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/audio_platform_info.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_platform_info.xml \
     $(MOTOROLA_ROOT)/vendor/etc/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 
 # Media
@@ -112,6 +115,11 @@ PRODUCT_COPY_FILES += \
     $(MOTOROLA_ROOT)/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
 
 # Platform specific init
+ifneq ($(TARGET_USES_LEGACY_AB),true)
+PRODUCT_COPY_FILES += \
+    $(MOTOROLA_ROOT)/vendor/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+endif
+
 PRODUCT_PACKAGES += \
     ueventd
 
@@ -144,18 +152,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Init
 PRODUCT_COPY_FILES += \
-    device/qcom/common/vendor/init/holi/bin/init.kernel.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.kernel.post_boot.sh
+    device/qcom/common/vendor/init/sm6150/bin/init.kernel.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.kernel.post_boot.sh
 
 PRODUCT_SOONG_NAMESPACES += device/qcom/common/vendor/init
-
-# FPSensor Gestures
-PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/usr/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
-    $(MOTOROLA_ROOT)/vendor/usr/idc/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc
-
-# Fingerprint
-PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-fpc2.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/android.hardware.biometrics.fingerprint@2.1-service-fpc2.rc
 
 # Perf
 PRODUCT_PACKAGES += \
@@ -174,6 +173,9 @@ PRODUCT_USES_PIXEL_USB_HAL := false
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=10,10
+
+# Camera
+TARGET_USES_64BIT_CAMERA := true
 
 $(call inherit-product, device/motorola/common/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)

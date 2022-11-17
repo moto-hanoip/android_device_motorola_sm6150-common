@@ -107,16 +107,6 @@ vendor/lib64/vendor.qti.hardware.slmadapter@1.0.so
 vendor/lib64/vendor.qti.latency@2.0.so
 vendor/lib64/vendor.qti.latency@2.1.so
 
-# Fingerprint
-vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-chipone
-vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-fpc
-vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-chipone2.rc
-vendor/etc/init/android.hardware.biometrics.fingerprint@2.1-service-fpc2.rc
-vendor/lib64/com.fingerprints.extension@1.0.so
-vendor/lib64/com.motorola.hardware.biometric.fingerprint@1.0.so
-vendor/lib64/hw/chipone.fingerprint.default.so
-vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
-
 # Firmware
 vendor/firmware/a612_rgmu.bin
 vendor/firmware/a618_gmu.bin
@@ -365,7 +355,6 @@ vendor/lib64/libpdnotifier.so
 vendor/lib64/libqcmaputils.so
 vendor/lib64/libqcrilFramework.so
 vendor/lib64/libqrtr.so
-vendor/lib64/libqsap_sdk.so
 vendor/lib64/libqsocket.so
 vendor/lib64/libril-qc-hal-qmi.so
 vendor/lib64/libril-qc-logger.so
