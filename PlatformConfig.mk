@@ -63,4 +63,7 @@ BOARD_INCLUDE_RECOVERY_DTBO := true
 # USB
 SOONG_CONFIG_MOTO_COMMON_USB_USB_CONTROLLER_NAME := a600000
 
+# Power
+SOONG_CONFIG_MOTO_COMMON_POWER_FB_IDLE_PATH ?= /sys/devices/platform/soc/ae00000.qcom,mdss_mdp/idle_state
+
 include device/motorola/common/CommonConfig.mk
