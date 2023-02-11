@@ -70,7 +70,10 @@ AB_OTA_PARTITIONS += \
 
 ifneq ($(TARGET_USES_LEGACY_AB),true)
 AB_OTA_PARTITIONS += \
-    product \
+    product
+endif
+ifeq ($(TARGET_HAS_VBMETA_SYSTEM),true)
+AB_OTA_PARTITIONS += \
     vbmeta_system
 endif
 
@@ -166,7 +169,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_USES_PIXEL_POWER_HAL := true
 
 # USB
-PRODUCT_USES_PIXEL_USB_HAL := false
+PRODUCT_USES_PIXEL_USB_HAL := true
 
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
