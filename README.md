@@ -1,20 +1,19 @@
-SM4250 platform
+SM6150 platform
 ============
 
 ## Copyrights
-Copyright (C) LineageOS Modded Project/Electimon 2022
+Copyright (C) Electimon 2023
 
 Copyright (C) Sony Mobile Communications 2019
 
 ## Device Tree
 
-Android device configuration for the bengal platform (**SM4250/SM6115**).
+Android device configuration for the bengal platform (**SM6150**).
 
 ### Supported devices
 
 | Device | Codename |
 |-|:-:|
-| Moto G Play (2021) | guamna |
-| Moto G(10) | capri |
-| Moto G(30) | caprip |
-| Moto G Power (2021) | borneo |
+| Moto G(40) Fusion/Moto G(60) | [hanoip](../../../../moto-common/android_device_motorola_hanoip) |
+| Moto Z4 | [okinawa](../../../../moto-common/android_device_motorola_okinawa) |
+| Motorola One Hyper | [kasagi](../../../../moto-common/android_device_motorola_kasagi) |
