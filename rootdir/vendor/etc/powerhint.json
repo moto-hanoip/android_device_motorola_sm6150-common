@@ -71,27 +71,23 @@
       "ResetOnInit": true
     },
     {
-      "Name": "GPUMaxFreq",
-      "Path": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
-      "Values": [
-        "745000000",
-        "700000000",
-        "550000000",
-        "435000000",
-        "290000000"
-      ],
-      "DefaultIndex": 0,
-      "ResetOnInit": true
-    },
-    {
       "Name": "GPUMinFreq",
-      "Path": "/sys/class/kgsl/kgsl-3d0/devfreq/min_freq",
+      "Path": "/sys/class/kgsl/kgsl-3d0/min_pwrlevel",
       "Values": [
-        "745000000",
-        "700000000",
-        "550000000",
-        "435000000",
-        "290000000"
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "Comments": [
+        "0 => 845000000",
+        "1 => 745000000",
+        "2 => 700000000",
+        "3 => 550000000",
+        "4 => 435000000",
+        "5 => 290000000"
       ],
       "ResetOnInit": true
     },
@@ -383,12 +379,6 @@
       "Value": "1593600"
     },
     {
-      "PowerHint": "SUSTAINED_PERFORMANCE",
-      "Node": "GPUMaxFreq",
-      "Duration": 0,
-      "Value": "550000000"
-    },
-    {
       "PowerHint": "INTERACTION",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
@@ -429,6 +419,12 @@
       "Node": "CPUBWMinFreq",
       "Duration": 0,
       "Value": "9155"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "GPUMinFreq",
+      "Duration": 0,
+      "Value": "2"
     },
     {
       "PowerHint": "INTERACTION",
@@ -504,6 +500,12 @@
     },
     {
       "PowerHint": "LAUNCH",
+      "Node": "GPUMinFreq",
+      "Duration": 5000,
+      "Value": "2"
+    },
+    {
+      "PowerHint": "LAUNCH",
       "Node": "LLCCBWMinFreq",
       "Duration": 5000,
       "Value": "6881"
@@ -548,13 +550,7 @@
       "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "290000000"
-    },
-    {
-      "PowerHint": "EXPENSIVE_RENDERING",
-      "Node": "GPUMaxFreq",
-      "Duration": 0,
-      "Value": "550000000"
+      "Value": "2"
     },
     {
       "PowerHint": "ML_ACC",
@@ -606,15 +602,9 @@
     },
     {
       "PowerHint": "FIXED_PERFORMANCE",
-      "Node": "GPUMaxFreq",
-      "Duration": 0,
-      "Value": "745000000"
-    },
-    {
-      "PowerHint": "FIXED_PERFORMANCE",
       "Node": "GPUMinFreq",
       "Duration": 0,
-      "Value": "290000000"
+      "Value": "3"
     }
   ]
 }
