@@ -25,6 +25,7 @@ TARGET_RECOVERY_FSTAB ?= $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab.qcom
 
 # Kernel
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
+BOARD_KERNEL_IMAGE_NAME := Image.gz
 
 # SELinux
 BOARD_USE_ENFORCING_SELINUX := true
