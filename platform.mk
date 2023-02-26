@@ -159,12 +159,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
 
-# Init
-PRODUCT_COPY_FILES += \
-    device/qcom/common/vendor/init/sm6150/bin/init.kernel.post_boot.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.kernel.post_boot.sh
-
-PRODUCT_SOONG_NAMESPACES += device/qcom/common/vendor/init
-
 # Perf
 PRODUCT_PACKAGES += \
     vendor.qti.hardware.perf@2.0.vendor \
@@ -175,9 +169,6 @@ PRODUCT_COPY_FILES += \
     $(MOTOROLA_ROOT)/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 PRODUCT_USES_PIXEL_POWER_HAL := true
-
-# USB
-PRODUCT_USES_PIXEL_USB_HAL := true
 
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
