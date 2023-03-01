@@ -21,45 +21,9 @@ TARGET_KERNEL_VERSION := 4.14
 PRODUCT_PLATFORM_MOT := true
 TARGET_BOARD_PLATFORM := $(SM6150)
 
-# Kernel Headers
-PRODUCT_VENDOR_KERNEL_HEADERS := device/motorola/sm6150-common-kernel/kernel-headers
-
-# Rootdir Path
-MOTOROLA_ROOT := $(PLATFORM_COMMON_PATH)/rootdir
-
-# Overlay
-DEVICE_PACKAGE_OVERLAYS += \
-    $(PLATFORM_COMMON_PATH)/overlay
-
-# BT definitions for Qualcomm solution
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(PLATFORM_COMMON_PATH)/bluetooth
-
-# Dynamic Partitions: Enable DP
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
 # A/B support
 AB_OTA_UPDATER := true
 PRODUCT_SHIPPING_API_LEVEL := 29
-
-# A/B OTA dexopt package
-PRODUCT_PACKAGES += \
-    otapreopt_script
-
-# A/B OTA dexopt update_engine hookup
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_system=true \
-    POSTINSTALL_PATH_system=system/bin/otapreopt_script \
-    FILESYSTEM_TYPE_system=ext4 \
-    POSTINSTALL_OPTIONAL_system=true
-
-# A/B related packages
-PRODUCT_PACKAGES += \
-    update_engine \
-    update_engine_client \
-    update_engine_sideload \
-    update_verifier \
-    bootctrl.sm6150-common \
-    bootctrl.sm6150-common.recovery
 
 AB_OTA_PARTITIONS += \
     boot \
@@ -77,107 +41,58 @@ AB_OTA_PARTITIONS += \
     vbmeta_system
 endif
 
-# Dynamic Partitions: build fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd
-
-# Treble
-# Include vndk/vndk-sp/ll-ndk modules
-PRODUCT_PACKAGES += \
-    vndk_package
-
-# Device Specific Permissions
-PRODUCT_COPY_FILES += \
-     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.gyroscope.xml \
-     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.barometer.xml \
-     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepcounter.xml \
-     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.sensor.stepdetector.xml
-
 # Audio
 PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 
-# Media
-PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
-    $(MOTOROLA_ROOT)/vendor/etc/media_codecs_performance.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_performance.xml
+# Dynamic Partitions
+TARGET_USES_DYNAMIC_PARTITIONS := true
 
-# Qualcom WiFi Overlay
-PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-    $(MOTOROLA_ROOT)/vendor/etc/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf
-
-# Qualcom WiFi Configuration
-PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
-
-# MSM IRQ Balancer configuration file
-PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
-
-# Platform specific init
+# FSTab
 ifneq ($(TARGET_USES_LEGACY_AB),true)
 ifeq ($(TARGET_COPY_OUT_SYSTEM_EXT),system_ext)
 PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/fstab_system_ext.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab_system_ext.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
 else
 PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
 endif
 else
 PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/fstab_legacy.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab_legacy.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
 endif
-
-PRODUCT_PACKAGES += \
-    ueventd
-
-# Sensors
-# hardware.ssc.so links against display mappers, of which
-# the interface libraries are explicitly included here:
-PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.0-service.multihal \
-    vendor.qti.hardware.display.mapper@1.1.vendor \
-    vendor.qti.hardware.display.mapper@3.0.vendor
-
-# QCOM Bluetooth
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.qcom.bluetooth.soc=cherokee
-
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.btconfigstore@1.0.vendor \
-    vendor.qti.hardware.btconfigstore@2.0.vendor \
-    com.qualcomm.qti.bluetooth_audio@1.0.vendor \
-    vendor.qti.hardware.fm@1.0.vendor \
-    com.dsi.ant@1.0.vendor
-
-# Legacy BT property (will be removed in S)
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.qcom.bluetooth.soc=cherokee
 
 # Gatekeeper
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
 
-# Perf
-PRODUCT_PACKAGES += \
-    vendor.qti.hardware.perf@2.0.vendor \
-    vendor.qti.hardware.perf@2.2.vendor
+# MSM IRQ Balancer configuration file
+PRODUCT_COPY_FILES += \
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
+
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += \
+    $(PLATFORM_COMMON_PATH)/overlay
 
 # Power
 PRODUCT_COPY_FILES += \
-    $(MOTOROLA_ROOT)/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
 PRODUCT_USES_PIXEL_POWER_HAL := true
+
+# Qualcomm WiFi Configuration
+PRODUCT_COPY_FILES += \
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
+    $(PLATFORM_COMMON_PATH)/rootdir/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
+
+# QCOM Bluetooth
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.qcom.bluetooth.soc=cherokee
 
 # Telephony
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=10,10
 
-# Camera
-TARGET_USES_64BIT_CAMERA := true
-
 $(call inherit-product, device/motorola/common/common.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 $(call inherit-product, vendor/motorola/sm6150-common/sm6150-common-vendor.mk)
