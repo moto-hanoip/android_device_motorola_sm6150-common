@@ -1,0 +1,5 @@
+prebuilt_etc {
+    name: "fstab.qcom",
+    src: "vendor/etc/fstab.qcom",
+    vendor_ramdisk_available: true,
+}
