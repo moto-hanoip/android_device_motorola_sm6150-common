@@ -4,3 +4,9 @@ prebuilt_etc {
     ramdisk_available: true,
     vendor_ramdisk_available: true,
 }
+
+prebuilt_etc {
+    name: "fstab_system_ext.qcom",
+    src: "fstab_system_ext.qcom",
+    vendor_ramdisk_available: true,
+}
