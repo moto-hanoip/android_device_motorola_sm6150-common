@@ -33,54 +33,37 @@ AB_OTA_PARTITIONS += \
     vbmeta
 
 ifneq ($(TARGET_USES_LEGACY_AB),true)
-AB_OTA_PARTITIONS += \
-    product
+  AB_OTA_PARTITIONS += \
+      product
 endif
 ifeq ($(TARGET_HAS_VBMETA_SYSTEM),true)
-AB_OTA_PARTITIONS += \
-    vbmeta_system
+  AB_OTA_PARTITIONS += \
+      vbmeta_system
 endif
-
-# Audio
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml
 
 # Dynamic Partitions
 TARGET_USES_DYNAMIC_PARTITIONS := true
 
 # FSTab
 ifneq ($(TARGET_USES_LEGACY_AB),true)
-ifeq ($(TARGET_COPY_OUT_SYSTEM_EXT),system_ext)
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab_system_ext.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+  ifeq ($(TARGET_COPY_OUT_SYSTEM_EXT),system_ext)
+    PRODUCT_COPY_FILES += \
+      $(PLATFORM_COMMON_PATH)/rootdir/fstab_system_ext.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+  else
+    PRODUCT_COPY_FILES += \
+        $(PLATFORM_COMMON_PATH)/rootdir/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+  endif
 else
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
-endif
-else
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/fstab_legacy.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
+  PRODUCT_COPY_FILES += \
+      $(PLATFORM_COMMON_PATH)/rootdir/fstab_legacy.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
 endif
 
 # Gatekeeper
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
 
-# MSM IRQ Balancer configuration file
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/msm_irqbalance.conf:$(TARGET_COPY_OUT_VENDOR)/etc/msm_irqbalance.conf
-
 # Power
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
-
 PRODUCT_USES_PIXEL_POWER_HAL := true
-
-# Qualcomm WiFi Configuration
-PRODUCT_COPY_FILES += \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/etc/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
-    $(PLATFORM_COMMON_PATH)/rootdir/vendor/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini
 
 # QCOM Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
