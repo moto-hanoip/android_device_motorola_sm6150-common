@@ -45,20 +45,6 @@ endif
 # Dynamic Partitions
 TARGET_USES_DYNAMIC_PARTITIONS := true
 
-# FSTab
-ifneq ($(TARGET_USES_LEGACY_AB),true)
-  ifeq ($(TARGET_COPY_OUT_SYSTEM_EXT),system_ext)
-    PRODUCT_COPY_FILES += \
-      $(PLATFORM_COMMON_PATH)/rootdir/fstab_system_ext.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
-  else
-    PRODUCT_COPY_FILES += \
-        $(PLATFORM_COMMON_PATH)/rootdir/fstab.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
-  endif
-else
-  PRODUCT_COPY_FILES += \
-      $(PLATFORM_COMMON_PATH)/rootdir/fstab_legacy.qcom:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.qcom
-endif
-
 # Gatekeeper
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true

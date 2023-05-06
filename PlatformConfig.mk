@@ -23,17 +23,6 @@ ifneq ($(TARGET_USES_LEGACY_AB),true)
 TARGET_HAS_VBMETA_SYSTEM ?= true
 endif
 
-# FSTab
-ifneq ($(TARGET_USES_LEGACY_AB),true)
-  ifeq ($(TARGET_COPY_OUT_SYSTEM_EXT),system_ext)
-    TARGET_RECOVERY_FSTAB ?= $(PLATFORM_COMMON_PATH)/rootdir/fstab_system_ext.qcom
-  else
-    TARGET_RECOVERY_FSTAB ?= $(PLATFORM_COMMON_PATH)/rootdir/fstab.qcom
-  endif
-else
-  TARGET_RECOVERY_FSTAB ?= $(PLATFORM_COMMON_PATH)/rootdir/fstab_legacy.qcom
-endif
-
 # Kernel
 BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
 BOARD_KERNEL_IMAGE_NAME := Image.gz
