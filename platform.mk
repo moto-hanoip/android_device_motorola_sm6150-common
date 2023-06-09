@@ -42,6 +42,9 @@ ifeq ($(TARGET_HAS_VBMETA_SYSTEM),true)
       vbmeta_system
 endif
 
+# Device Characteristics
+DEVICE_CHARACTERISTICS += ufs
+
 # Dynamic Partitions
 TARGET_USES_DYNAMIC_PARTITIONS := true
 
