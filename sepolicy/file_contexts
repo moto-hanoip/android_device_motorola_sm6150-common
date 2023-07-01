@@ -9,6 +9,10 @@
 
 /dev/block/platform/soc/1d84000\.ufshc/sd[df] u:object_r:vendor_gpt_block_device:s0
 
+/dev/block/platform/soc/1d84000\.ufshc/by-name/hw u:object_r:vendor_hw_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/utags u:object_r:vendor_utags_block_device:s0
+/dev/block/platform/soc/1d84000\.ufshc/by-name/utagsBackup u:object_r:vendor_utags_block_device:s0
+
 # Fingerprint
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service-okinawa u:object_r:hal_fingerprint_default_exec:s0
 /vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.3-service-parker u:object_r:hal_fingerprint_default_exec:s0
