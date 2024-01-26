@@ -412,13 +412,13 @@ vendor/radio/qcril_database/upgrade/8_version_qcrildb.sql
 vendor/radio/qcril_database/upgrade/9_version_qcrildb.sql
 
 # Radio - from S2SNS32.34-72-31-1
-vendor/bin/qmi_motext_hook|1b23db5b183c17ac945dfb83998711bb4c5104b6
+vendor/bin/qmi_motext_hook|87b0e6b2c92f552c4b9309cdd8bab7302b5ce93e
 
 # Radio IMS
 etc/permissions/moto-telephony.xml:system_ext/etc/permissions/moto-telephony.xml
 framework/moto-telephony.jar:system_ext/framework/moto-telephony.jar
 system_ext/lib64/libimsmedia_jni.so
--system_ext/priv-app/ims/ims.apk|e48ddd5a44c66db54cac7718f0030fc5e13d4b4a
+-system_ext/priv-app/ims/ims.apk|5d36e65eadf789edfbf48dfabb9e0ecac62b1d9b
 vendor/bin/imsdatadaemon
 vendor/bin/imsqmidaemon
 vendor/bin/imsrcsd
