@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Arch
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv8-2a
 TARGET_2ND_ARCH_VARIANT := armv8-a
 
 # AVB
