@@ -52,6 +52,11 @@ TARGET_USES_DYNAMIC_PARTITIONS ?= true
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.gatekeeper.disable_spu=true
 
+# LiveDisplay
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@2.0-service-sdm \
+    vendor.lineage.livedisplay@2.0-service-sysfs.motorola_sm6150
+
 # Power
 PRODUCT_USES_PIXEL_POWER_HAL := true
 
